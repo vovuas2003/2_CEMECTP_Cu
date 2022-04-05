@@ -84,13 +84,16 @@ struct edge* solution(struct edge* vector, unsigned int* NUM) {
 	}
 	Edge* vector_1 = (Edge*)calloc(*NUM, sizeof(Edge));
 	unsigned NUM_2 = 0;
-	for (unsigned int i = 0; i < NUM_1 - 1 || NUM_2 != *NUM; i++) {
+	for (unsigned int i = 0; i < NUM_1 && NUM_2 < *NUM; i++) {
+	// Уже знаем, сколько заявок выбрали, поэтому выхода за границы массива vector не будет
+	// Условие i < NUM_1 избыточное
 		if (vector[i].begin != -1) {
 			vector_1[NUM_2] = vector[i];
 			NUM_2++;
 		}
 	}
-	return vector_1;
+	free(vector); // Ответ уже сформирован в vector_1; тем более заметим, что
+	return vector_1; // в main vector = solution(), поэтому free обязательно
 }
 
 /*
