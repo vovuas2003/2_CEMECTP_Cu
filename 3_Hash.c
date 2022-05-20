@@ -1,3 +1,7 @@
+/*
+#define _CRT_SECURE_NO_WARNINGS
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -42,6 +46,7 @@ void get_string(char* string, BIG len) {
 
 void search_pattern_in_text(char* FILE_WAY, char* STRING) {
 	freopen(FILE_WAY, "r", stdin);
+    int k = 0;
 
 	int c;
 	BIG len_STRING = strlen(STRING);
@@ -60,6 +65,7 @@ void search_pattern_in_text(char* FILE_WAY, char* STRING) {
 	for (BIG i = 0; (c = getchar()) != EOF; i++) {
 		if (HASH_STRING == additional_hash) {
 			if (!strcmp(STRING, additional_string)) {
+                k++;
 				printf("%llu\n", i); // индекс вхождения
 			}
 		}
@@ -74,6 +80,7 @@ void search_pattern_in_text(char* FILE_WAY, char* STRING) {
 
 		additional_string[len_STRING - 1] = c;
 	}
+	printf("\n%d\n", k);
 	free(additional_string);
 	fclose(stdin);
 }
